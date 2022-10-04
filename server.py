@@ -49,12 +49,12 @@ def say_hello():
         <form action="/diss">
           Yo, what's your name...<input type="text" name="person">
           Choose a diss:
-            <input type=radio name="diss" value="hampster">
-            <label>Hampster</label>
-            <input type=radio name="diss" value="fish">
-            <label>Fish</label>
-            <input type=radio name="diss" value="squirrel">
-            <label>Squirrel</label>
+            <input type=radio id="hampster" name="diss" value="hampster">
+            <label for="hampster">Hampster</label>
+            <input type=radio id="fish" name="diss" value="fish">
+            <label for="fish">Fish</label>
+            <input type=radio id="squirrel" name="diss" value="squirrel">
+            <label for="squirrel">Squirrel</label>
             <input type="submit" value="Submit">
         </form>
       </body>
@@ -96,7 +96,7 @@ def diss_person():
     <!doctype html>
     <html>
       <head>
-        <title>A Compliment</title>
+        <title>An Insult</title>
       </head>
       <body>
         Hi, {player}! I think you look like a {diss}!
