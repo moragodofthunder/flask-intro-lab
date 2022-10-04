@@ -18,7 +18,10 @@ AWESOMENESS = [
 def start_here():
     """Home page."""
 
-    return "<!doctype html><html>Hi! This is the home page.</html>"
+    return """<!doctype html>
+    <html>Hi! This is the home page.</html>
+    <a href="/hello">Say hello!</a>
+    """
 
 
 @app.route('/hello')
@@ -35,7 +38,24 @@ def say_hello():
         <h1>Hi There!</h1>
         <form action="/greet">
           What's your name? <input type="text" name="person">
+          Choose a compliment:
+          <select name="compliments">
+            <option value="awesome">Awesome</option>
+            <option value="terrific">Terrific</option>
+            <option value="fantastic">Fantastic</option>
+            </select>
           <input type="submit" value="Submit">
+        </form>
+        <form action="/diss">
+          Yo, what's your name...<input type="text" name="person">
+          Choose a diss:
+            <input type=radio name="diss" value="hampster">
+            <label>Hampster</label>
+            <input type=radio name="diss" value="fish">
+            <label>Fish</label>
+            <input type=radio name="diss" value="squirrel">
+            <label>Squirrel</label>
+            <input type="submit" value="Submit">
         </form>
       </body>
     </html>
@@ -47,8 +67,11 @@ def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
+    
+    # y=x
 
-    compliment = choice(AWESOMENESS)
+    # compliment = choice(AWESOMENESS)
+    compliment = request.args.get("compliments")
 
     return f"""
     <!doctype html>
@@ -58,6 +81,25 @@ def greet_person():
       </head>
       <body>
         Hi, {player}! I think you're {compliment}!
+      </body>
+    </html>
+    """
+
+@app.route('/diss')
+def diss_person():
+    """Get user by name."""
+
+    player = request.args.get("person")
+    diss = request.args.get("diss")
+
+    return f"""
+    <!doctype html>
+    <html>
+      <head>
+        <title>A Compliment</title>
+      </head>
+      <body>
+        Hi, {player}! I think you look like a {diss}!
       </body>
     </html>
     """
